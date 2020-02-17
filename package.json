@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon src/server",
     "dev:debug": "nodemon --inspect src/server.js",
-    "start": "sucrase-node src/server.js",
+    "start": "node --experimental-modules src/server.js",
     "build": "sucrase ./src -d ./dist --transforms imports"
   },
   "dependencies": {
@@ -29,5 +29,8 @@
     "eslint-plugin-prettier": "^3.1.2",
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1"
+  },
+  "engines": {
+    "node": "13.x"
   }
 }
