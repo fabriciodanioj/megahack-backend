@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon src/server",
     "dev:debug": "nodemon --inspect src/server.js",
-    "start": "node ./dist/server",
+    "start": "node src/server",
     "build": "sucrase ./src -d ./dist --transforms imports"
   },
   "dependencies": {
