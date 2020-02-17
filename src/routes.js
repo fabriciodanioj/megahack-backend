@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
-import SessionController from './app/controllers/SessionController';
-import UserController from './app/controllers/UserController';
-import VerifyController from './app/controllers/VerifyController';
-import AuthMiddleware from './app/middlewares/auth';
+import SessionController from './app/controllers/SessionController.js';
+import UserController from './app/controllers/UserController.js';
+import VerifyController from './app/controllers/VerifyController.js';
+import AuthMiddleware from './app/middlewares/auth.js';
 
 const routes = new Router();
 

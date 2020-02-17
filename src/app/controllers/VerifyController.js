@@ -1,4 +1,4 @@
-import User from '../models/User';
+import User from '../models/User.js';
 
 class VerifyController {
   async update(req, res) {

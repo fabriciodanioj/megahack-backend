@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import bcrypt from 'bcryptjs';
 import Totalvoice from 'totalvoice-node';
-import User from '../models/User';
+import User from '../models/User.js';
 
 const client = new Totalvoice(process.env.APIKEY_SMS);
 
