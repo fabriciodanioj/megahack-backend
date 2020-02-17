@@ -1,7 +1,7 @@
 import 'dotenv/config.js';
 
 import express from 'express';
-import { connect, set } from 'mongoose';
+import mongoose from 'mongoose';
 import cors from 'cors';
 
 import routes from './routes.js';
@@ -25,12 +25,12 @@ class App {
   }
 
   database() {
-    connect(process.env.MONGO_URI, {
+    mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,
     });
-    set('useCreateIndex', true);
+    mongoose.set('useCreateIndex', true);
   }
 }
 
