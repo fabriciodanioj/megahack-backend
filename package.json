@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "nodemon src/server",
-    "dev:debug": "nodemon --inspect src/server.js"
+    "dev:debug": "nodemon --inspect src/server.js",
+    "start": "node dist/server",
+    "build": "sucrase ./src -d ./dist --transforms imports"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -15,6 +18,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.1",
     "totalvoice-node": "^1.9.0",
+    "sucrase": "^3.12.1",
     "yup": "^0.28.1"
   },
   "devDependencies": {
@@ -24,7 +28,6 @@
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-prettier": "^3.1.2",
     "nodemon": "^2.0.2",
-    "prettier": "^1.19.1",
-    "sucrase": "^3.12.1"
+    "prettier": "^1.19.1"
   }
 }
