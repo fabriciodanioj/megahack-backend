@@ -1,11 +1,11 @@
-import express from 'express';
+import { Router } from 'express';
 
-import SessionController from './app/controllers/SessionController.js';
-import UserController from './app/controllers/UserController.js';
-import VerifyController from './app/controllers/VerifyController.js';
-import AuthMiddleware from './app/middlewares/auth.js';
+import SessionController from './app/controllers/SessionController';
+import UserController from './app/controllers/UserController';
+import VerifyController from './app/controllers/VerifyController';
+import AuthMiddleware from './app/middlewares/auth';
 
-const routes = new express.Router();
+const routes = new Router();
 
 routes.post('/users', UserController.store);
 routes.get('/users', UserController.index);
