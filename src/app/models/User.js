@@ -35,6 +35,20 @@ const UserSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    category: {
+      type: String,
+    },
+    bag: {
+      type: Object,
+      default: {
+        amount: 0,
+      },
+      required: true,
+    },
+    loan_id: {
+      type: Schema.Types.ObjectId,
+      ref: 'Loan',
+    },
   },
   {
     timestamps: true,

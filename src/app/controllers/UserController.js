@@ -2,13 +2,16 @@ import * as Yup from 'yup';
 import bcrypt from 'bcryptjs';
 import Totalvoice from 'totalvoice-node';
 import User from '../models/User';
+import Loan from '../models/Loan';
+
+// import SearchPersonApi from '../../services/SearchPersonApi';
 
 const client = new Totalvoice(process.env.APIKEY_SMS);
 
 class UserController {
   async index(req, res) {
     try {
-      const users = await User.find();
+      const users = await User.find().populate('loan_id');
       return res.status(200).send(users);
     } catch (err) {
       return res.status(400).send({ error: 'Failed to show users' });
@@ -33,6 +36,12 @@ class UserController {
         return res.status(400).send({ error: 'Validation fails' });
       }
 
+      /*
+      const response = await SearchPersonApi.post('/', {
+        cpf: req.body.document,
+      });
+      */
+
       const user = await User.findOne({
         email: req.body.email,
       });
@@ -47,10 +56,13 @@ class UserController {
 
       const token = Math.floor(Math.random() * 65536);
 
-      const { id, name, email } = await User.create({
+      const { quantity, active, id: loan_id } = await Loan.create({});
+
+      const { name, email, bag } = await User.create({
         ...req.body,
         password_hash,
         token,
+        loan_id,
       });
 
       await client.sms
@@ -63,18 +75,33 @@ class UserController {
         });
 
       return res.status(201).send({
-        id,
         name,
         email,
         token,
+        bag,
+        loan: {
+          quantity,
+          active,
+        },
       });
     } catch (err) {
+      console.error(err);
       return res.send({
         error: {
           title: 'Create user failed',
           messages: err,
         },
       });
+    }
+  }
+
+  async show(req, res) {
+    try {
+      const { doc } = req.params;
+      const user = await User.findOne({ document: doc }).populate('loan_id');
+      return res.status(200).send(user);
+    } catch (err) {
+      return res.status(400).send({ error: 'Failed to show users' });
     }
   }
 

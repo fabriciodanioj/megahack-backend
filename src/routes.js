@@ -9,6 +9,7 @@ const routes = new Router();
 
 routes.post('/users', UserController.store);
 routes.get('/users', UserController.index);
+routes.get('/users/:doc', UserController.show);
 routes.delete('/users/:id', UserController.delete);
 
 routes.put('/verify/:id', VerifyController.update);
